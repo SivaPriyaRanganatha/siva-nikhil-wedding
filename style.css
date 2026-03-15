@@ -1,4 +1,3 @@
-cat > style.css <<'EOF'
 body{
   margin:0;
   font-family:Georgia,serif;
@@ -168,4 +167,4 @@ section{
     width:min(280px, 85vw);
   }
 }
-EOF
+
