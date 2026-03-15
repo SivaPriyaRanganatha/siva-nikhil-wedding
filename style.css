@@ -1,0 +1,171 @@
+cat > style.css <<'EOF'
+body{
+  margin:0;
+  font-family:Georgia,serif;
+  background:#f6f1eb;
+  text-align:center;
+  color:#2f2a28;
+}
+
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(#f4ebe5,#f6f1eb);
+  padding:20px;
+}
+
+h1{
+  font-size:60px;
+  margin-bottom:10px;
+}
+
+h2{
+  margin-top:0;
+}
+
+button{
+  padding:14px 26px;
+  border:none;
+  background:#d8bfb3;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:16px;
+}
+
+section{
+  padding:80px 20px;
+}
+
+.gallery{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:18px;
+}
+
+.gallery img{
+  width:260px;
+  max-width:90vw;
+  border-radius:12px;
+  box-shadow:0 8px 18px rgba(0,0,0,.2);
+}
+
+#story{
+  display:none;
+}
+
+#trailerSection{
+  display:none;
+}
+
+#trailerVideo{
+  width:min(900px, 90vw);
+  border-radius:14px;
+  box-shadow:0 8px 20px rgba(0,0,0,.25);
+  margin-bottom:20px;
+}
+
+#passwordScreen{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100vh;
+  background:#f6f1eb;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  padding:20px;
+}
+
+#passwordScreen input{
+  padding:12px;
+  margin:10px 0 16px;
+  width:min(320px, 85vw);
+}
+
+.haldi{
+  background:#fff6d6;
+}
+
+.pelli{
+  background:#fff2e6;
+}
+
+.reception{
+  background:#f9eef2;
+}
+
+.timeline{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+  margin-bottom:60px;
+}
+
+.timelineItem{
+  background:white;
+  padding:14px 24px;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+
+.mapSection{
+  background:#f4ebe5;
+  padding:100px 20px;
+}
+
+.mapTimeline{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:30px;
+}
+
+.mapItem{
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  width:220px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+.endingScene{
+  background:#111;
+  color:white;
+  padding:140px 20px;
+}
+
+#petals{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:1;
+}
+
+@keyframes fall{
+  0%{transform:translateY(-10px);opacity:1;}
+  100%{transform:translateY(100vh);opacity:0;}
+}
+
+@media (max-width: 700px){
+  h1{
+    font-size:40px;
+  }
+
+  section{
+    padding:50px 14px;
+  }
+
+  .mapItem{
+    width:min(280px, 85vw);
+  }
+}
+EOF
