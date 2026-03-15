@@ -21,41 +21,54 @@ const folders = {
   reception: "10fAIQQcCjPzRv5sYfiIsjv95gpSG618m"
 };
 
-async function loadGallery(folderId, elementId) {
-  try {
-    const response = await fetch(API_URL + "?folder=" + folderId);
-    const files = await response.json();
+function renderGallery(files, elementId) {
+  const container = document.getElementById(elementId);
+  if (!container) return;
 
-    const container = document.getElementById(elementId);
-    if (!container) return;
+  container.innerHTML = "";
 
-    container.innerHTML = "";
+  files.forEach((file) => {
+    if (!file.mime) return;
 
-    files.forEach((file) => {
-      if (!file.mime) return;
+    if (file.mime.startsWith("image/")) {
+      const img = document.createElement("img");
+      img.src = file.url;
+      img.alt = file.name || "Wedding photo";
+      img.loading = "lazy";
+      container.appendChild(img);
+    }
 
-      if (file.mime.startsWith("image/")) {
-        const img = document.createElement("img");
-        img.src = file.url;
-        img.alt = file.name || "Wedding photo";
-        img.loading = "lazy";
-        container.appendChild(img);
-      }
+    if (file.mime.startsWith("video/")) {
+      const video = document.createElement("video");
+      video.src = file.url;
+      video.controls = true;
+      video.preload = "metadata";
+      video.style.width = "260px";
+      video.style.borderRadius = "12px";
+      video.style.boxShadow = "0 8px 18px rgba(0,0,0,.2)";
+      container.appendChild(video);
+    }
+  });
+}
 
-      if (file.mime.startsWith("video/")) {
-        const video = document.createElement("video");
-        video.src = file.url;
-        video.controls = true;
-        video.preload = "metadata";
-        video.style.width = "260px";
-        video.style.borderRadius = "12px";
-        video.style.boxShadow = "0 8px 18px rgba(0,0,0,.2)";
-        container.appendChild(video);
-      }
-    });
-  } catch (error) {
-    console.error("Gallery load error:", elementId, error);
-  }
+function loadGallery(folderId, elementId) {
+  const callbackName = "galleryCallback_" + elementId + "_" + Date.now();
+
+  window[callbackName] = function(files) {
+    renderGallery(files, elementId);
+    delete window[callbackName];
+    script.remove();
+  };
+
+  const script = document.createElement("script");
+  script.src = `${API_URL}?folder=${folderId}&callback=${callbackName}`;
+  script.onerror = function() {
+    console.error("Gallery load error:", elementId);
+    delete window[callbackName];
+    script.remove();
+  };
+
+  document.body.appendChild(script);
 }
 
 loadGallery(folders.engagement, "engagementGallery");
