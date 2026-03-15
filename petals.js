@@ -1,4 +1,3 @@
-cat > petals.js <<'EOF'
 const petalsContainer = document.getElementById("petals");
 
 function createPetal(){
@@ -19,4 +18,4 @@ function createPetal(){
 }
 
 setInterval(createPetal, 300);
-EOF
+
