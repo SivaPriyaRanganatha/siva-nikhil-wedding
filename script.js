@@ -22,7 +22,7 @@ const folders = {
 };
 
 const trailer =
-  "https://drive.google.com/uc?export=view&id=11M8WGq7IuGS0P_2WUaBbaKEHXckcYTYQ";
+  "https://drive.google.com/file/d/11M8WGq7IuGS0P_2WUaBbaKEHXckcYTYQ/view?usp=sharing";
 
 document.getElementById("trailerVideo").src = trailer;
 
